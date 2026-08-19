@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCode AI - Code Editor & Sandbox</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <span class="brand-text">SmartCode <span>AI</span></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="assistant.html" class="nav-link">AI Chat</a></li>
+        <li><a href="editor.html" class="nav-link active">Code Editor</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="assistant.html" class="btn btn-sm btn-primary">Ask AI</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top:16px;padding-bottom:24px;">
+    <div class="editor-layout">
+
+      <!-- Monaco Editor Panel -->
+      <div class="editor-wrapper">
+        <div class="editor-toolbar">
+          <div class="toolbar-left">
+            <span style="font-weight:700;font-size:0.95rem;color:#f8fafc;display:flex;align-items:center;gap:8px;">
+              💻 Editor
+            </span>
+            <select id="editor-language-select" class="form-control" style="width:auto;padding:6px 12px;font-size:0.85rem;">
+              <option value="python" selected>Python 3</option>
+              <option value="cpp">C++ (GCC)</option>
+              <option value="c">C (GCC)</option>
+              <option value="java">Java (OpenJDK)</option>
+            </select>
+          </div>
+          <div class="toolbar-right">
+            <button id="ask-ai-btn" class="btn btn-sm btn-outline" title="Ask AI to explain the current code">
+              🤖 Ask AI
+            </button>
+            <button id="reset-code-btn" class="btn btn-sm btn-outline" title="Reset to default template">
+              🔄 Reset
+            </button>
+            <button id="run-code-btn" class="btn btn-sm btn-success">
+              ▶ Run Code
+            </button>
+          </div>
+        </div>
+
+        <!-- Monaco Editor Container -->
+        <div id="monaco-editor-container"></div>
+      </div>
+
+      <!-- Terminal / Console Panel -->
+      <div class="terminal-wrapper">
+        <div class="terminal-header">
+          <div class="toolbar-left">
+            <span style="font-weight:700;font-size:0.9rem;color:#f8fafc;display:flex;align-items:center;gap:6px;">
+              📟 Console
+            </span>
+            <span id="execution-status-badge" class="status-badge badge-ready">● Ready</span>
+            <span id="execution-time-badge" style="font-size:0.75rem;color:var(--text-dim);font-family:var(--font-mono);">-- ms</span>
+          </div>
+          <div class="toolbar-right">
+            <button id="clear-console-btn" class="btn btn-sm btn-outline">Clear</button>
+          </div>
+        </div>
+
+        <div class="terminal-body">
+
+          <!-- Stdin -->
+          <div class="stdin-panel">
+            <label for="stdin-input" class="stdin-label">Standard Input (stdin):</label>
+            <textarea
+              id="stdin-input"
+              class="stdin-input"
+              placeholder="Enter program input here (e.g. 5, or line by line)..."
+              rows="3"
+            ></textarea>
+          </div>
+
+          <!-- Output -->
+          <div style="flex-grow:1;display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-size:0.8rem;color:var(--text-dim);">Output:</span>
+              <button id="debug-with-ai-btn" class="btn btn-sm btn-danger" style="display:none;">
+                🛠️ Debug with AI
+              </button>
+            </div>
+            <pre id="console-output" class="console-output">Press ▶ Run Code to execute your program.</pre>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:700;color:var(--text-main);margin-bottom:4px;">
+          <span>⚡</span> SmartCode AI Code Runner
+        </div>
+        <p style="font-size:0.85rem;">Multi-language execution powered by Wandbox sandbox</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="assistant.html">AI Chat</a>
+        <a href="editor.html">Code Editor</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>

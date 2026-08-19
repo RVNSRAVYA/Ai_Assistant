@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCode AI - Your Simple AI Coding Assistant</title>
+  <meta name="description" content="SmartCode AI - AI coding assistant for students. Generate code, explain, debug and run programs online.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <span class="brand-text">SmartCode <span>AI</span></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="assistant.html" class="nav-link">AI Chat</a></li>
+        <li><a href="editor.html" class="nav-link">Code Editor</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="assistant.html" class="btn btn-sm nav-cta">Start Coding</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">✨ AI-Powered Student Companion</div>
+        <h1 class="hero-title">SmartCode <span class="gradient-text">AI</span></h1>
+        <h2 class="hero-subtitle">Your Simple AI Coding Assistant</h2>
+        <p class="hero-desc">
+          Ask questions, generate code, understand programs, and debug your code with AI.
+        </p>
+        <div class="hero-buttons">
+          <a href="assistant.html" class="btn btn-primary btn-lg">⚡ Start Coding</a>
+          <a href="editor.html" class="btn btn-secondary btn-lg">💻 Code Editor</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Core Features</h2>
+          <p class="section-desc">Everything you need to learn, write, and run code in one place.</p>
+        </div>
+
+        <div class="grid-4">
+          <div class="card feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Generate Code</h3>
+            <p>Ask AI to write clean, working code in Python, Java, C, and C++ instantly.</p>
+            <a href="assistant.html?prompt=Write%20Python%20code%20for%20factorial%20of%20a%20number" class="card-link">Try it →</a>
+          </div>
+
+          <div class="card feature-card">
+            <div class="feature-icon">📖</div>
+            <h3>Explain Code</h3>
+            <p>Paste any code and get a simple plain-language explanation of what it does.</p>
+            <a href="assistant.html?prompt=Explain%20how%20a%20for%20loop%20works%20in%20Python" class="card-link">Try it →</a>
+          </div>
+
+          <div class="card feature-card">
+            <div class="feature-icon">🛠️</div>
+            <h3>Debug Code</h3>
+            <p>Describe your error or paste broken code and get the fixed version back.</p>
+            <a href="assistant.html?prompt=Help%20me%20debug%20this%20Python%20IndexError" class="card-link">Try it →</a>
+          </div>
+
+          <div class="card feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Run Code</h3>
+            <p>Run Python, Java, C, and C++ directly in your browser with custom input.</p>
+            <a href="editor.html" class="card-link">Launch Editor →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" style="background: rgba(15,23,42,0.4); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-desc">Three simple steps to get started.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card" style="cursor:pointer;" onclick="window.location='assistant.html'">
+            <div style="font-size:2rem;font-weight:800;color:var(--accent-primary);margin-bottom:12px;">01</div>
+            <h3 style="margin-bottom:8px;">Ask a Question</h3>
+            <p style="color:var(--text-muted);font-size:0.95rem;">Type any question — general knowledge, coding, debugging — into the chat box.</p>
+          </div>
+          <div class="card" style="cursor:pointer;" onclick="window.location='assistant.html'">
+            <div style="font-size:2rem;font-weight:800;color:var(--accent-secondary);margin-bottom:12px;">02</div>
+            <h3 style="margin-bottom:8px;">Get AI Response</h3>
+            <p style="color:var(--text-muted);font-size:0.95rem;">Receive a clear answer or clean code block. Copy it or open it directly in the editor.</p>
+          </div>
+          <div class="card" style="cursor:pointer;" onclick="window.location='editor.html'">
+            <div style="font-size:2rem;font-weight:800;color:var(--accent-emerald);margin-bottom:12px;">03</div>
+            <h3 style="margin-bottom:8px;">Run & Test Code</h3>
+            <p style="color:var(--text-muted);font-size:0.95rem;">Run the code in the built-in editor with live terminal output and see the result instantly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="section" style="text-align:center;">
+      <div class="container">
+        <div class="card" style="padding:50px 24px; background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(6,182,212,0.08)); border-color:rgba(99,102,241,0.3);">
+          <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px;">Ready to Start?</h2>
+          <p style="color:var(--text-muted);max-width:540px;margin:0 auto 28px;">Chat with AI, generate code, run it live — all in one place.</p>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="assistant.html" class="btn btn-primary btn-lg">⚡ Open AI Chat</a>
+            <a href="editor.html" class="btn btn-secondary btn-lg">💻 Open Code Editor</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:700;color:var(--text-main);margin-bottom:6px;">
+          <span>⚡</span> SmartCode AI
+        </div>
+        <p style="font-size:0.85rem;">A College-Level AI Coding Assistant & Sandbox Project</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="assistant.html">AI Chat</a>
+        <a href="editor.html">Code Editor</a>
+        <a href="about.html">About</a>
+      </div>
+      <span id="server-status-badge" class="status-badge badge-ready">● Checking...</span>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

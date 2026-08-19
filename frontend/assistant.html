@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartCode AI - Chat Assistant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <span class="brand-text">SmartCode <span>AI</span></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="assistant.html" class="nav-link active">AI Chat</a></li>
+        <li><a href="editor.html" class="nav-link">Code Editor</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="editor.html" class="btn btn-sm btn-secondary">Open Editor</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="chat-container">
+
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">⚡</div>
+          <div>
+            <h2 style="font-size:1.1rem;font-weight:700;color:#f8fafc;">SmartCode AI Chat</h2>
+            <span id="server-status-badge" class="status-badge badge-ready">● Connecting...</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <a href="editor.html" class="btn btn-sm btn-secondary" title="Open Code Editor">💻 Editor</a>
+          <button id="clear-chat-btn" class="btn btn-sm btn-outline" title="Clear chat">🗑️ Clear</button>
+        </div>
+      </div>
+
+      <!-- Chat Messages -->
+      <div id="chat-messages" class="chat-messages">
+        <div class="message-row ai">
+          <div class="msg-avatar">⚡</div>
+          <div class="msg-content">
+            <strong>Hi! I'm SmartCode AI.</strong>
+            <p style="margin-top:6px;color:var(--text-muted);">
+              Ask me anything — coding questions, general knowledge, or just say hi!
+              If you need code, just ask me to write one.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggestion Chips -->
+      <div class="chat-suggestions">
+        <button class="prompt-chip" data-prompt="Why is the sky blue?">🌍 Sky Blue?</button>
+        <button class="prompt-chip" data-prompt="Write an email requesting 2 days leave">✉️ Leave Email</button>
+        <button class="prompt-chip" data-prompt="What is machine learning?">🤖 Machine Learning</button>
+        <button class="prompt-chip" data-prompt="Write Python code for factorial of a number">⚡ Factorial Code</button>
+        <button class="prompt-chip" data-prompt="Write C++ code for binary search">⚡ Binary Search C++</button>
+        <button class="prompt-chip" data-prompt="Explain what is recursion">💡 Recursion</button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="chat-input-bar">
+        <textarea
+          id="chat-input"
+          class="chat-textarea"
+          placeholder="Type a message... (Enter to send, Shift+Enter for newline)"
+          rows="1"
+        ></textarea>
+        <button id="chat-send-btn" class="btn btn-primary chat-send-btn">⚡ Send</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:700;color:var(--text-main);margin-bottom:4px;">
+          <span>⚡</span> SmartCode AI
+        </div>
+        <p style="font-size:0.85rem;">Simple, fast AI assistant & code sandbox</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="assistant.html">AI Chat</a>
+        <a href="editor.html">Code Editor</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/assistant.js"></script>
+</body>
+</html>

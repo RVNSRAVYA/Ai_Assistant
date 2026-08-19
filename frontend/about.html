@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About SmartCode AI - College Project Presentation & Architecture</title>
+  <meta name="description" content="Project documentation, system architecture, problem statement, and viva guide for SmartCode AI.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">⚡</div>
+        <span class="brand-text">SmartCode <span>AI</span></span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="assistant.html" class="nav-link">AI Assistant</a></li>
+        <li><a href="editor.html" class="nav-link">Code Editor</a></li>
+        <li><a href="about.html" class="nav-link active">About Project</a></li>
+        <li><a href="assistant.html" class="btn btn-sm nav-cta">Start Coding</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Presentation Content -->
+  <main class="container" style="padding-top: 32px; padding-bottom: 60px;">
+    
+    <div style="text-align: center; margin-bottom: 40px;">
+      <div class="hero-badge">🎓 College Project Presentation</div>
+      <h1 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 8px;">SmartCode AI System Documentation</h1>
+      <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 720px; margin: 0 auto;">
+        A comprehensive overview of the problem statement, proposed solution, system architecture, and evaluation guide.
+      </p>
+    </div>
+
+    <!-- 1. Problem Statement & Proposed Solution -->
+    <div class="grid-2" style="margin-bottom: 28px;">
+      <div class="card">
+        <div class="feature-icon" style="background: rgba(244, 63, 94, 0.15); color: #fb7185; border-color: rgba(244, 63, 94, 0.3);">⚠️</div>
+        <h2 style="font-size: 1.4rem; margin-bottom: 12px;">Problem Statement</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Computer science students frequently face steep learning curves when transitioning to programming. Common hurdles include:
+        </p>
+        <ul style="margin-left: 20px; color: var(--text-muted); font-size: 0.92rem; margin-top: 8px;">
+          <li style="margin-bottom: 6px;">Cryptic compiler errors and runtime exceptions without actionable context.</li>
+          <li style="margin-bottom: 6px;">Difficulty translating algorithmic concepts (e.g. recursion, loops, OOP) into working syntax.</li>
+          <li style="margin-bottom: 6px;">Complexity of setting up local development environments and toolchains.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="feature-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">💡</div>
+        <h2 style="font-size: 1.4rem; margin-bottom: 12px;">Proposed Solution</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>SmartCode AI</strong> provides a unified web-based coding assistant and execution workbench that combines:
+        </p>
+        <ul style="margin-left: 20px; color: var(--text-muted); font-size: 0.92rem; margin-top: 8px;">
+          <li style="margin-bottom: 6px;">A multi-mode pedagogical AI assistant (Generate, Explain, Debug, Q&A).</li>
+          <li style="margin-bottom: 6px;">An integrated browser-based Monaco editor with multi-language syntax highlighting.</li>
+          <li style="margin-bottom: 6px;">Safe, isolated remote code execution with custom standard input (stdin) support.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2. System Architecture -->
+    <div class="doc-section">
+      <h2><span>🏛️</span> System Architecture</h2>
+      <p>
+        SmartCode AI follows a clean, decoupled client-server architecture designed for high scalability, rapid response times, and complete server security.
+      </p>
+
+      <div style="background: #090d16; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; margin: 20px 0; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7; overflow-x: auto; color: #cbd5e1;">
++-----------------------------------------------------------------------------+
+|                                 CLIENT TIER                                 |
+|                                                                             |
+|  [ HTML5 / CSS3 / Vanilla JS ] <---> [ Monaco Code Editor / Prism Highlighting]
++-----------------------------------------------------------------------------+
+                                       │
+                      REST API (JSON over HTTP / CORS)
+                                       │
++--------------------------------------▼--------------------------------------+
+|                                BACKEND TIER                                 |
+|                                                                             |
+|                         [ FastAPI Python Application ]                      |
+|                                      │                                      |
+|            ┌─────────────────────────┴─────────────────────────┐            |
+|            ▼                                                   ▼            |
+|   [ AI Service Layer ]                               [ Code Runner Engine ]  |
+|   - Multi-provider router                            - Piston Sandbox Engine |
+|   - Gemini / Groq / OpenAI                           - Isolated Containers   |
+|   - Smart Offline Mode                               - Stdin/Stdout Buffer  |
++-----------------------------------------------------------------------------+
+      </div>
+    </div>
+
+    <!-- 3. Key Advantages -->
+    <div class="doc-section">
+      <h2><span>⭐</span> Key Project Advantages</h2>
+      <div class="grid-3" style="margin-top: 16px;">
+        <div>
+          <h4 style="color: var(--accent-secondary); margin-bottom: 6px;">Beginner Friendly</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">No complicated setups. Students can generate, test, and debug code immediately in their browser.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--accent-primary); margin-bottom: 6px;">Safe Isolated Execution</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">User code is executed in an isolated remote sandbox, completely protecting the host server from malicious code.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--accent-emerald); margin-bottom: 6px;">Configurable AI Engine</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Switch easily between Google Gemini, Groq, OpenAI, or smart offline demo mode via environment variables.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Viva / Project Review Q&A -->
+    <div class="doc-section">
+      <h2><span>🎓</span> Project Review & Viva Q&A Guide</h2>
+      <p style="margin-bottom: 24px;">Prepared answers to common questions asked by college examiners and project reviewers:</p>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q1:</span> Why did you choose FastAPI over Flask or Django?
+        </div>
+        <div class="faq-answer">
+          FastAPI is modern, extremely fast (powered by Starlette and Pydantic), provides automatic OpenAPI/Swagger documentation, and includes built-in asynchronous request handling with clean type hints.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q2:</span> How is arbitrary code execution secured?
+        </div>
+        <div class="faq-answer">
+          Arbitrary code is never executed directly on the host server. The backend forwards execution requests to an isolated Piston sandbox container with strict CPU, memory, execution timeouts (5s), and process isolation.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q3:</span> How are API keys protected from client-side exposure?
+        </div>
+        <div class="faq-answer">
+          All AI API keys and third-party credentials reside strictly on the backend server within a protected <code>.env</code> file. The frontend client only interacts through authenticated backend REST endpoints.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Q4:</span> What are the planned future enhancements?
+        </div>
+        <div class="faq-answer">
+          Future versions will incorporate user authentication, personal question history, real-time peer code collaboration, voice input for accessibility, and automated unit test generation.
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div style="text-align:center;margin-top:40px;">
+      <div class="card" style="padding:40px 24px;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(6,182,212,0.08));border-color:rgba(99,102,241,0.3);">
+        <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:12px;">Try It Yourself</h2>
+        <p style="color:var(--text-muted);max-width:520px;margin:0 auto 24px;">Open the AI chat or start coding right now.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="assistant.html" class="btn btn-primary btn-lg">⚡ Open AI Chat</a>
+          <a href="editor.html" class="btn btn-secondary btn-lg">💻 Open Code Editor</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">
+          <span>⚡</span> SmartCode AI
+        </div>
+        <p style="font-size: 0.85rem;">Designed for College Students & Academic Project Reviews</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="assistant.html">AI Assistant</a>
+        <a href="editor.html">Code Editor</a>
+        <a href="about.html">About & Presentation</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
