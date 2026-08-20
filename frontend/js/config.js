@@ -21,3 +21,17 @@ function getApiBase() {
 function getApiUrl(endpoint) {
   return `${getApiBase()}${endpoint}`;
 }
+
+function getPageUrl(page) {
+  if (window.location.protocol === 'file:') {
+    return `${page}.html`;
+  }
+
+  const routes = {
+    home: '/',
+    assistant: '/assistant',
+    editor: '/editor',
+    about: '/about'
+  };
+  return routes[page] || '/';
+}

@@ -170,7 +170,7 @@ async function runCode() {
     const res = await fetch(`${getApiBase()}/api/run-code`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code, language: currentLang, stdin })
+      body: JSON.stringify({ code, language: currentLang, input: stdin })
     });
 
     const elapsed = Date.now() - start;
@@ -218,7 +218,7 @@ function debugWithAI() {
   sessionStorage.setItem('smartcode_transfer_mode',  'debug');
   sessionStorage.setItem('smartcode_transfer_error', error);
 
-  window.location.href = 'assistant.html';
+  window.location.href = getPageUrl('assistant');
 }
 
 // ─── Ask AI to Explain current code ──────────────────────────────────────────
@@ -231,7 +231,7 @@ function askAIExplain() {
   sessionStorage.setItem('smartcode_transfer_lang', currentLang);
   sessionStorage.setItem('smartcode_transfer_mode', 'explain');
 
-  window.location.href = 'assistant.html';
+  window.location.href = getPageUrl('assistant');
 }
 
 // ─── Reset Code ───────────────────────────────────────────────────────────────

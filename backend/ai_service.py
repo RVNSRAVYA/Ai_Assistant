@@ -9,23 +9,30 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY", "")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
+OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "openrouter/auto")
 
 def is_ai_configured() -> bool:
     """Checks if any valid AI API key is configured."""
-    return bool(GEMINI_API_KEY or GROQ_API_KEY or OPENAI_API_KEY)
+    return bool(GEMINI_API_KEY or GROQ_API_KEY or OPENAI_API_KEY or OPENROUTER_API_KEY)
 
 def get_active_provider_name() -> str:
     """Returns the name of the currently active AI provider."""
+    if AI_PROVIDER == "openrouter" and OPENROUTER_API_KEY:
+        return f"OpenRouter ({OPENROUTER_MODEL})"
     if GEMINI_API_KEY:
         return f"Google Gemini ({GEMINI_MODEL})"
     if GROQ_API_KEY:
         return f"Groq Cloud ({GROQ_MODEL})"
     if OPENAI_API_KEY:
         return f"OpenAI ({OPENAI_MODEL})"
+    if OPENROUTER_API_KEY:
+        return f"OpenRouter ({OPENROUTER_MODEL})"
     return "Smart Offline / Demo Mode (No API Key set)"
 
 def build_system_prompt(language: str = "General") -> str:
@@ -122,6 +129,30 @@ def _call_openai_api(system_prompt: str, user_message: str) -> str:
         data = resp.json()
         return data["choices"][0]["message"]["content"].strip()
     raise RuntimeError(f"OpenAI API returned HTTP {resp.status_code}: {resp.text}")
+
+def _call_openrouter_api(system_prompt: str, user_message: str) -> str:
+    """Calls OpenRouter's OpenAI-compatible chat completions API."""
+    url = f"{OPENROUTER_BASE_URL.rstrip('/')}/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "http://localhost:8000",
+        "X-Title": "SmartCode AI"
+    }
+    payload = {
+        "model": OPENROUTER_MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_message}
+        ],
+        "temperature": 0.3,
+        "max_tokens": 2048
+    }
+    resp = requests.post(url, json=payload, headers=headers, timeout=45)
+    if resp.status_code == 200:
+        data = resp.json()
+        return data["choices"][0]["message"]["content"].strip()
+    raise RuntimeError(f"OpenRouter API returned HTTP {resp.status_code}: {resp.text}")
 
 def _generate_smart_offline_response(question: str, code: Optional[str] = None) -> str:
     """
@@ -274,7 +305,7 @@ def ask_ai(question: str, language: str = "General", mode: str = "normal", code:
             "mode": mode,
             "language": language,
             "provider": get_active_provider_name(),
-            "error": "Please enter a message or question."
+            "error": "Please enter a question or message."
         }
 
     user_payload_parts = []
@@ -289,7 +320,14 @@ def ask_ai(question: str, language: str = "General", mode: str = "normal", code:
     answer = None
     provider_used = None
 
-    if GEMINI_API_KEY:
+    if AI_PROVIDER == "openrouter" and OPENROUTER_API_KEY:
+        try:
+            answer = _call_openrouter_api(system_prompt, user_message)
+            provider_used = f"OpenRouter ({OPENROUTER_MODEL})"
+        except Exception:
+            pass
+
+    elif GEMINI_API_KEY:
         try:
             answer = _call_gemini_api(system_prompt, user_message)
             provider_used = f"Google Gemini ({GEMINI_MODEL})"
@@ -307,6 +345,13 @@ def ask_ai(question: str, language: str = "General", mode: str = "normal", code:
         try:
             answer = _call_openai_api(system_prompt, user_message)
             provider_used = f"OpenAI ({OPENAI_MODEL})"
+        except Exception:
+            pass
+
+    elif OPENROUTER_API_KEY:
+        try:
+            answer = _call_openrouter_api(system_prompt, user_message)
+            provider_used = f"OpenRouter ({OPENROUTER_MODEL})"
         except Exception:
             pass
 

@@ -63,7 +63,7 @@ function setupInputBehavior() {
 
 // ─── URL + sessionStorage transfer params ───────────────────────────────────
 function checkTransferParams() {
-  // 1. URL query param: assistant.html?prompt=...
+  // 1. URL query param: /assistant?prompt=...
   const urlParams = new URLSearchParams(window.location.search);
   const urlPrompt = urlParams.get('prompt');
 
@@ -119,7 +119,7 @@ async function handleSendMessage() {
     const response = await fetch(`${getApiBase()}/api/ask`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text, context: 'chat' })
+      body: JSON.stringify({ question: text, mode: 'normal', language: 'General' })
     });
 
     removeTypingIndicator(typingId);
@@ -129,7 +129,10 @@ async function handleSendMessage() {
     }
 
     const data = await response.json();
-    appendAIMessage(data.response || 'No response received.');
+    if (!data.success) {
+      throw new Error(data.error || 'The AI service could not answer.');
+    }
+    appendAIMessage(data.answer || 'No response received.');
   } catch (err) {
     removeTypingIndicator(typingId);
     appendAIMessage(`⚠️ Could not reach the server. Make sure the backend is running.\n\n_Error: ${err.message}_`);
@@ -196,7 +199,7 @@ function appendAIMessage(markdown) {
     toolbar.querySelector('.code-editor-btn').addEventListener('click', () => {
       sessionStorage.setItem('smartcode_editor_code', code);
       sessionStorage.setItem('smartcode_editor_lang', lang);
-      window.location.href = 'editor.html';
+      window.location.href = getPageUrl('editor');
     });
 
     pre.insertBefore(toolbar, codeEl);

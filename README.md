@@ -52,7 +52,7 @@ SmartCode AI bridges this gap with an intuitive, unified web portal featuring:
 * **Pydantic v2**: Data validation and response serialization.
 
 ### AI Engine & Execution
-* **AI Provider**: Google Gemini API (free tier), Groq Cloud, or OpenAI compatible API (configurable via `.env`).
+* **AI Provider**: OpenRouter, Google Gemini API (free tier), Groq Cloud, or OpenAI compatible API (configurable via `.env`).
 * **Code Execution**: Piston Sandbox Engine API (safe containerized execution).
 
 ---
@@ -127,6 +127,15 @@ AI_PROVIDER=gemini
 GEMINI_API_KEY=your_google_gemini_api_key_here
 ```
 > 💡 *Note: You can get a free Google Gemini API key at [Google AI Studio](https://aistudio.google.com/app/apikey). If left empty, SmartCode AI automatically runs in **Smart Offline / Demo Mode**.*
+
+For OpenRouter, configure the backend with:
+```ini
+AI_PROVIDER=openrouter
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+OPENROUTER_MODEL=openrouter/auto
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+```
+The key stays on the backend and is never sent to frontend JavaScript.
 
 ### Step 4: Run the Application
 Start the FastAPI server:
