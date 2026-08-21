@@ -18,6 +18,8 @@ COPY . ./
 # Switch to non‑root user
 USER appuser
 
+ENV PYTHONPATH=/app/backend
+
 # Expose the port that Railway provides via the PORT env var (default 8000)
 EXPOSE $PORT
 
