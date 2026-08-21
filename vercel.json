@@ -6,8 +6,5 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false,
-  "static": {
-    "directory": "frontend"
-  }
+  "trailingSlash": false
 }
