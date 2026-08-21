@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://aiassistant-production-YOUR-URL.up.railway.app/api/$1"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "static": {
+    "directory": "frontend"
+  }
+}
