@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://aiassistant-production-YOUR-URL.up.railway.app/api/$1"
+      "destination": "https://aiassistant-production-a3c8.up.railway.app/api/$1"
     }
   ],
   "cleanUrls": true,
